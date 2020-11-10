@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace EFCoreFundamentals
 {
@@ -8,14 +9,20 @@ namespace EFCoreFundamentals
     {
         static void Main(string[] args)
         {
-           
-            GetProducts();
-            Console.WriteLine("------------");
-            GetProductById(2);
-            GetProductByName("MSI");
-            GetProductByPrice();
-            UpdateProduct();
-            DeleteProduct(1);
+
+            //GetProducts();
+            //Console.WriteLine("------------");
+            //GetProductById(2);
+            //GetProductByName("MSI");
+            //GetProductByPrice();
+            //UpdateProduct();
+            //DeleteProduct(1);
+            //AddUsers();
+            //AddAddress();
+            AddAddressToUser();
+            Console.WriteLine("OK");
+
+
 
         }
         //ADD
@@ -38,6 +45,47 @@ namespace EFCoreFundamentals
                 Console.WriteLine("Eklendiler");
             }
         }
+
+        public static void AddUsers()
+        {
+            var users = new List<User>() 
+            {
+                new User{Name="Eray",Email="eray.mail"},
+                new User{Name="Berkay",Email="berkay.mail"},
+            };
+            using (var db = new ExampleContext())
+            {
+                db.Users.AddRange(users);
+                db.SaveChanges();
+            }
+        }
+
+        public static void AddAddress()
+        {
+            var address = new List<Address>()
+            {
+                new Address{FullName="Eray",Title="Ev",Body="IST",UserId=1},
+                new Address{FullName="Eray",Title="İş",Body="USA",UserId=1},
+                new Address{FullName="Berkay",Title="Ev",Body="IST",UserId=2},
+                new Address{FullName="Berkay",Title="İş",Body="UK",UserId=2}
+            };
+            using (var db = new ExampleContext())
+            {
+                db.Addresses.AddRange(address);
+                db.SaveChanges();
+            }
+        }
+
+        public static void AddAddressToUser()
+        {
+            using (var db=new ExampleContext())//belli bir kullanıcıya adres ekledik
+            {
+                var user = db.Users.Where(i => i.Id == 1).FirstOrDefault();
+                user.Addresses.Add(new Address {FullName="Eray V2",Title="Funny",Body="B.Çekmece"}); 
+                db.SaveChanges();
+            }
+        }
+
         //ADD
 
         //GET
