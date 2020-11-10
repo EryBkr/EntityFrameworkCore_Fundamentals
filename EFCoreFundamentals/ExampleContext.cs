@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EFCoreFundamentals
 {
-    public class ExampleContext:DbContext
+    public class ExampleContext:DbContext //Database ile iletişimimizi sağlayan sınıf
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

@@ -52,3 +52,4 @@ C:\Users\Blackerback\OneDrive\Masaüstü\EfCoreFundamentals\EFCoreFundamentals\E
 C:\Users\Blackerback\OneDrive\Masaüstü\EfCoreFundamentals\EFCoreFundamentals\EFCoreFundamentals\obj\Debug\netcoreapp3.1\EFCoreFundamentals.dll
 C:\Users\Blackerback\OneDrive\Masaüstü\EfCoreFundamentals\EFCoreFundamentals\EFCoreFundamentals\obj\Debug\netcoreapp3.1\EFCoreFundamentals.pdb
 C:\Users\Blackerback\OneDrive\Masaüstü\EfCoreFundamentals\EFCoreFundamentals\EFCoreFundamentals\obj\Debug\netcoreapp3.1\EFCoreFundamentals.genruntimeconfig.cache
+C:\Users\Blackerback\OneDrive\Masaüstü\EfCoreFundamentals\EFCoreFundamentals\EFCoreFundamentals\obj\Debug\netcoreapp3.1\EFCoreFundamentals.csprojAssemblyReference.cache
