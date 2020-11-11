@@ -3,14 +3,16 @@ using EFCoreFundamentals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreFundamentals.Migrations
 {
     [DbContext(typeof(ExampleContext))]
-    partial class ExampleContextModelSnapshot : ModelSnapshot
+    [Migration("20201111210736_InitialCreate_3")]
+    partial class InitialCreate_3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,7 @@ namespace EFCoreFundamentals.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("EFCoreFundamentals.Product", b =>

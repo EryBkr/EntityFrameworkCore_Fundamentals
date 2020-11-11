@@ -15,5 +15,6 @@ namespace EFCoreFundamentals
         public string Name { get; set; }
         public string Email { get; set; }
         public List<Address> Addresses { get; set; }//İlişkinin çok tarafı
+        public Customer Customer { get; set; } //Birebir ilişki
     }
 }
