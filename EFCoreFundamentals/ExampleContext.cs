@@ -17,5 +17,21 @@ namespace EFCoreFundamentals
         {
             optionsBuilder.UseSqlServer(@"Database=ExampleDB;Server=(localdb)\MSSQLLocalDB;Trusted_Connection=True;");//Connection String Eklendi
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductCategory>()
+                 .HasKey(t => new { t.ProductId, t.CategoryId }); //İki Foreign Key Birlikte Unique olarak ayarlandı
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(pc => pc.Product)
+                .WithMany(p => p.ProductCategories)
+                .HasForeignKey(pc => pc.ProductId);
+
+            modelBuilder.Entity<ProductCategory>()
+               .HasOne(pc => pc.Category)
+               .WithMany(c => c.ProductCategories)
+               .HasForeignKey(pc => pc.CategoryId);
+        }
     }
 }

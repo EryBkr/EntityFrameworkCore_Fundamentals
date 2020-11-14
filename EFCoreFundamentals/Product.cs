@@ -13,7 +13,8 @@ namespace EFCoreFundamentals
         [MaxLength(100)]//Max karakter sayısı 100
         [Required]//Zorunlu olarak tanımladık
         public string Name { get; set; }
-
         public decimal Price { get; set; }
+        public List<ProductCategory> ProductCategories { get; set; }//Çoka çok ilişki
+
     }
 }

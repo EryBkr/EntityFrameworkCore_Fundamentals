@@ -22,7 +22,7 @@ namespace EFCoreFundamentals
             //AddAddressToUser();
             //AddCustomer();
             //AddUserAndCustomer();
-
+            AddProductCategory();
 
         }
         //ADD
@@ -105,6 +105,38 @@ namespace EFCoreFundamentals
                 db.Users.Add(user);
                 db.SaveChanges();
                 Console.WriteLine("Eklendi");
+            }
+        }
+
+        public static void AddProductCategory()
+        {
+            //var products = new List<Product>()
+            //{
+            //    new Product{Name="Samsung S5", Price=2000},
+            //    new Product{Name="Samsung S6", Price=3000},
+            //    new Product{Name="Samsung S7", Price=4000}
+            //};
+
+            //var categories = new List<Category>()
+            //{
+            //    new Category{Name="Teknoloji"},
+            //    new Category{Name="Cep Telefonu"}
+            //};
+           
+            using (var db = new ExampleContext())
+            {
+                //db.Products.AddRange(products);
+                //db.Categories.AddRange(categories);
+                //db.SaveChanges();
+                var Ids = new int[] { 1, 2 };
+                var product = db.Products.Find(2);//Id bilgisi veriliyor
+                product.ProductCategories = Ids.Select(i => new ProductCategory() //Category Id lerini Product Entity si içerisinde ProductCategory Listesine aktardık
+                {
+                    CategoryId=i,
+                    ProductId=product.Id
+                }).ToList();
+                db.SaveChanges();
+                Console.WriteLine("Kaydedildi");
             }
         }
 
