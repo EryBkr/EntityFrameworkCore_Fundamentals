@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -22,7 +23,8 @@ namespace EFCoreFundamentals
             //AddAddressToUser();
             //AddCustomer();
             //AddUserAndCustomer();
-            AddProductCategory();
+            //AddProductCategory();
+            //Seed(new ExampleContext());
 
         }
         //ADD
@@ -216,5 +218,40 @@ namespace EFCoreFundamentals
             }
         }
         //DELETE
+
+        //SEED DATA
+        public static void Seed(DbContext dbContext) //Herhangi bir context nesnesi verebiliriz
+        {
+            if (dbContext.Database.GetPendingMigrations().Count()==0)//Bekleyen migration kontrolü
+            {
+                var products = new List<Product>()
+                {
+                    new Product{Name="Samsung S5", Price=2000},
+                    new Product{Name="Samsung S6", Price=3000},
+                    new Product{Name="Samsung S7", Price=4000}
+                };
+
+                var categories = new List<Category>()
+                {
+                    new Category{Name="Teknoloji"},
+                    new Category{Name="Cep Telefonu"}
+                };
+
+                ExampleContext _context =dbContext as ExampleContext;
+                if (_context.Products.Count()==0)
+                {
+                    _context.Products.AddRange(products);
+                }
+                if (_context.Categories.Count() == 0)
+                {
+                    _context.Categories.AddRange(categories);
+                }
+                _context.SaveChanges();
+                Console.WriteLine("Kaydedildi");
+            }
+
+            
+        }
+        //SEED DATA
     }
 }

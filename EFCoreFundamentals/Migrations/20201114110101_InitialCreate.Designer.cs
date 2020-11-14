@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreFundamentals.Migrations
 {
     [DbContext(typeof(ExampleContext))]
-    [Migration("20201111210736_InitialCreate_3")]
-    partial class InitialCreate_3
+    [Migration("20201114110101_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace EFCoreFundamentals.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("EFCoreFundamentals.Product", b =>
@@ -106,6 +106,21 @@ namespace EFCoreFundamentals.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("EFCoreFundamentals.ProductCategory", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategory");
                 });
 
             modelBuilder.Entity("EFCoreFundamentals.User", b =>
@@ -140,6 +155,21 @@ namespace EFCoreFundamentals.Migrations
                     b.HasOne("EFCoreFundamentals.User", "User")
                         .WithOne("Customer")
                         .HasForeignKey("EFCoreFundamentals.Customer", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EFCoreFundamentals.ProductCategory", b =>
+                {
+                    b.HasOne("EFCoreFundamentals.Category", "Category")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EFCoreFundamentals.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
