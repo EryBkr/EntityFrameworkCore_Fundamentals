@@ -18,6 +18,7 @@ namespace EFCoreFundamentals
             optionsBuilder.UseSqlServer(@"Database=ExampleDB;Server=(localdb)\MSSQLLocalDB;Trusted_Connection=True;");//Connection String Eklendi
         }
 
+        //Fluent Api
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>()
